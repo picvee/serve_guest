@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username: root
+  password: 
+  host: localhost
+
+development:
+  <<: *default
+  database: sg_dev
+
+test:
+  <<: *default
+  #database: portal_test
+  database: sg_test
+
+production:
+  <<: *default
+  database: sg_production

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @menu.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @menu.description %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @menu.active %>
+</p>
+
+<h2>Menu Items</h2>
+<ul>
+	<% @menu.items.each do |item| %>
+		<li><%= item.name %> <%= link_to 'X', remove_item_path(menu_id: @menu.id, item_id: item.id) %></li>
+	<% end %>
+</ul>
+<%= form_tag add_item_path(menu_id: @menu.id), method: :post do |f| %>
+	<%= select_tag :item_id, options_for_select((Item.all - @menu.items).collect{|i| [i.name, i.id]}) %>
+	<%= submit_tag '+' %>
+<% end %>
+
+<%= link_to 'Edit', edit_menu_path(@menu) %> |
+<%= link_to 'Back', menus_path %>

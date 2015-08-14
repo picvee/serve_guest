@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'order/request_order'
+
   resources :items
 
   resources :menus

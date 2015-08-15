@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :accounts
 
   get 'order/request_order'
+  get 'order/request' => 'order#request_order', as: :request_order
+  get 'order/validate' => 'order#validate', as: :validate_order
+
 
   resources :items
 

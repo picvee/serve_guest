@@ -15,5 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
-db/schema.rb
-config/database.yml
+/db/schema.rb
+/config/database.yml

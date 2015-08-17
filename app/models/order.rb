@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   before_create :generate_order_uid
 
   def details
-    {order_id: self.uid}
+    {order_id: self.uid, account_id: @account_id}
   end
 
   private
@@ -10,6 +10,6 @@ class Order < ActiveRecord::Base
   def generate_order_uid
     if self.uid.blank?
       self.uid = SecureRandom.hex(2)
-    end
+    end    
   end
 end

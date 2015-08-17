@@ -1,6 +1,10 @@
 class OrderController < ApplicationController
-  def request_order
-  	order = Order.create
+  def request_order  	
+    account_details = Account.find_by_name(params[:name])  
+    p account_details
+    @account_id = account_details.id
+    p @account_id
+    order = Order.create
     render json: order.details
   end
 

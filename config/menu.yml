@@ -1,0 +1,15 @@
+Breakfast:
+  Idli: 10
+  Vada: 10
+  Dosa: 20
+  Bath: 20
+Lunch:
+  NorthIndian: 60
+  SouthIndian: 55
+Snacks:
+  PaniPuri:   15
+  MasalaPuri: 15
+Dinner:
+  Friedrice: 65
+  Biriyani:  80
+

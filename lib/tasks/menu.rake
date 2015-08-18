@@ -1,7 +1,7 @@
 require 'yaml'
 
 namespace :db do
-task :populate_menu do
+task :populate_menu => :environment do
 	puts "hello world"
 	menu_items = YAML.load_file("config/menu.yml")
 	menu_items.each do |menu, items|

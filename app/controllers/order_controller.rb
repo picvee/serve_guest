@@ -9,9 +9,9 @@ class OrderController < ApplicationController
     order = Order.find_by(uid: uid)
     return_data = {}
     if order.blank?
-      return_data = {valid: false}
+      return_data = {valid: false, message: 'Invalid order', account: ''}
     else
-      return_data = {valid: true}
+      return_data = {valid: true, message: 'Welcome to our khaana Khazaana', account: 'Kaakal Kai Ruchi'}
     end
     render json: return_data
   end

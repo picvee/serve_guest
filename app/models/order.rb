@@ -1,8 +1,10 @@
 class Order < ActiveRecord::Base
   before_create :generate_order_uid
+  validates :tag_id, presence: true
+  belongs_to :tag
 
   def details
-    {order_id: self.uid, tag_name: self.tag_name, account_id: self.account_id}
+    {order_id: self.uid, tag_name: self.tag.name, account_id: ''}
   end
 
   private

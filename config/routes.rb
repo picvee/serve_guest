@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
+
   resources :accounts
 
   get 'order/request' => 'order#request_order', as: :request_order

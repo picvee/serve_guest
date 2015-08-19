@@ -22,8 +22,8 @@ namespace :load_account do
 	task :populate_account => :environment do
 		account_details = YAML.load_file("config/hotel.yml")
 		account_names = Account.all.pluck(:name)
-		menus = Menu.all.pluck(:name)
-		account_details.each do |account, menu_deatils|
+		menus = Menu.all.pluck(:name)		
+		account_details.each do |account, menu_details|
 			if !account_names.include?(account)
 				account = Account.create(:name => account)
 			else
@@ -34,6 +34,10 @@ namespace :load_account do
 					Menu.create(:name => menu, :account_id => account.id)
 				end
 			end
+		end
+		account_details.each do |account, menu|
+			Account.create(name: account) unless account_names.include?(account)
+			Menu.create(name: menu) unless menus.include?(menu)
 		end
 	end
 end

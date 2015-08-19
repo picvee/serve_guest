@@ -4,7 +4,7 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
-    @menus = Menu.includes(:items).all
+    @menus = Account.includes(menus: [:items]).first.menus.all
     respond_to do |format|
       format.json { render json: {data: @menus.collect{|menu| menu.json_attributes}}}
       format.html

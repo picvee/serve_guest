@@ -16,3 +16,20 @@ namespace :load do
 		end
 	end
 end
+
+
+namespace :load_account do
+	task :populate_account => :environment do
+		account_details = YAML.load_file("config/hotel.yml")
+		account_names = Account.all.pluck(:name)
+		menus = Menu.all.pluck(:name)
+		account_details.each do |account, menu|
+			if !account_names.include?(account)
+				Account.create(:name => account)
+			end
+			if !menus.include?(menu)
+				Menu.create(:name => menu)
+			end
+		end
+	end
+end

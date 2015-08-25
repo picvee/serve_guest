@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+role_names = Role.all.pluck(:name)
+names = [
+	["vendor"],
+	["consumer"]
+]
+names.each do |name|
+	unless role_names.include?(name)
+		role = Role.create(name: name)
+	end
+end

@@ -23,21 +23,15 @@ namespace :load_account do
 		account_details = YAML.load_file("config/hotel.yml")
 		account_names = Account.all.pluck(:name)
 		menus = Menu.all.pluck(:name)		
-		account_details.each do |account, menu_details|
-			if !account_names.include?(account)
+		account_details.each do |account, menu|
+			unless account_names.include?(account)
 				account = Account.create(:name => account)
 			else
 				account = Account.find_by_name(account)
+			end	
+			menu.each do |menu_name|		
+				Menu.create(name: menu_name, account_id: account.id) unless menus.include?(menu_name)				
 			end
-			menu_details.each do |menu|
-				if !menus.include?(menu)							
-					Menu.create(:name => menu, :account_id => account.id)
-				end
-			end
-		end
-		account_details.each do |account, menu|
-			Account.create(name: account) unless account_names.include?(account)
-			Menu.create(name: menu) unless menus.include?(menu)
 		end
 	end
 end
